@@ -13,13 +13,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 
 profile = webdriver.FirefoxProfile()
-profile.set_preference("pdfjs.disabled", True)
-profile.set_preference("browser.download.folderList",2)
-profile.set_preference("browser.helperApps.alwaysAsk.force", False)
-profile.set_preference("browser.download.manager.showWhenStarting",False)
-profile.set_preference("browser.download.dir", "/Users/Tim/Documents/Github/jstor-downloader/temp") #Point this to the temp folder
-profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
-profile.set_preference("plugin.disable_full_page_plugin_for_types", "application/pdf")
+from selenium.webdriver.firefox.options import Options
+options = Options()
+# Eğer yukarıdaki satırlarda profile.set_preference(...) gibi ayarlar varsa
+# hepsinin başındaki "profile" kelimesini "options" olarak değiştir.
+# Örnek: options.set_preference("browser.download.folderList", 2)
+driver = webdriver.Firefox(options=options)
+
 driver = webdriver.Firefox(firefox_profile=profile)
 
 __MAINURL__ = "https://www.jstor.org/action/showLogin?redirectUri=/?&loginSuccess=true&aerror=I001"
